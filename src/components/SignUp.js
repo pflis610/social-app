@@ -1,8 +1,10 @@
 import React from 'react';
 import './SignUp.css';
 
-import UseSignUpForm from "./UseSignUpForm";
-import validate from './SignUpFormValidationRules';
+import {Title} from './Title.style';
+import useSignUpForm from "../hooks/useSignUpForm";
+import validate from '../helpers/signUpFormValidationRules';
+
 
 const SignUp = () => {
   const {
@@ -10,16 +12,18 @@ const SignUp = () => {
     errors,
     handleChange,
     handleSubmit,
-  } = UseSignUpForm(login, validate);
+  } = useSignUpForm(login, validate);
+
 
   function login() {
     console.log('No errors, submit callback called!');
   }
 
-
+ 
     return(
         <div className="sign-up">
             <h1>Sign Up</h1>
+            <Title>Hello World!</Title>
             <form className="sign-up-form" onSubmit={handleSubmit} noValidate>
 
                 <input autoComplete="off" className="input" type="text" name="userName" placeholder="User Name" onChange={handleChange} value={values.userName || ''} required />
@@ -39,6 +43,7 @@ const SignUp = () => {
             </form>
         </div>
     );
+  
 }
 
 

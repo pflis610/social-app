@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
 
-import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
-import Home from './Home';
-import LogIn from './LogIn';
-import SignUp from './SignUp';
-import Menu from './Menu';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Home from './components/Home';
+import LogIn from './components/LogIn';
+import SignUp from './components/SignUp';
+import Menu from './components/Menu';
 
 
 function App() {
+
+
   return (
   
     <Router>
@@ -23,7 +25,7 @@ function App() {
             <Route path="/login">
               <LogIn />
             </Route>
-            <Route path="/signUp">
+            <Route path="/signup">
               <SignUp />
             </Route>  
             <Route path="/">

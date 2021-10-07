@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const UseSignUpForm = (callback, validate) => {
+const useSignUpForm = (callback, validate) => {
 
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -16,6 +17,30 @@ const UseSignUpForm = (callback, validate) => {
     if (event) event.preventDefault();
     setErrors(validate(values));
     setIsSubmitting(true);
+    
+    let newUser = {
+      username: "piotr",
+      email: "hans2@hansbot.pl",
+      password: "password2",
+    }
+  
+    const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
+  
+    axios.post(
+            'http://akademia108.pl/api/social-app/user/signup', 
+            JSON.stringify(newUser),
+            { 'headers': headers })
+        .then((req) => {
+    
+            // your code :)      
+      
+            console.log(req.data);  
+        }).catch((error) => {
+            console.error(error);
+        })
   };
 
   const handleChange = (event) => {
@@ -31,4 +56,4 @@ const UseSignUpForm = (callback, validate) => {
   }
 };
 
-export default UseSignUpForm;
+export default useSignUpForm;
