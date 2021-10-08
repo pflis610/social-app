@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import './LogIn.css';
 
-const LogIn = () => {
+import {Redirect} from "react-router-dom";
+import { Input } from './Input.style';
+
+const LogIn = (props) => {
 
     const [values, setValues] = useState({});
+    const [errors, setErrors] = useState(false);
 
 
     const handleSubmit = (event) => {
@@ -27,11 +31,19 @@ const LogIn = () => {
                 JSON.stringify(logUser),
                 { 'headers': headers })
             .then((req) => {
-        
-                localStorage.setItem('user', JSON.stringify(req.data))
-             
-        
-                console.log(req.data);  
+                
+                if(req.data.error === false) {
+                    localStorage.setItem('user', JSON.stringify(req.data))
+                    props.setUser(req.data)
+                }    
+
+               
+                if(req.data.error !== false) {
+                    setErrors(true);
+                } else {
+                    setErrors(false);
+                }
+
             }).catch((error) => {
                 console.error(error);
             })
@@ -45,12 +57,13 @@ const LogIn = () => {
 
     return(
         <div className="log-in">
+            {props.user && <Redirect to="/" />}
             <h1>Log In</h1>
             <form className="log-in-form" onSubmit={handleSubmit} noValidate>
-                <input type="text" className="input" placeholder="User Name" name="username" value= {values.username} onChange= {handleChange} /> 
-                <input type="text" className="input" placeholder="Password" name="password" value= {values.password} onChange= {handleChange} />
+                <Input type="text" className="input" placeholder="User Name" name="username" value= {values.username} onChange= {handleChange} /> 
+                <Input type="text" className="input" placeholder="Password" name="password" value= {values.password} onChange= {handleChange} />
                 <button className="btn" type="submit">Log In</button>
-                {localStorage.getItem('user') == {'error':true} && <p className="error">Not valid password</p>} 
+                {errors && <p className="error">Not valid password</p>} 
             </form>    
         </div>
     );

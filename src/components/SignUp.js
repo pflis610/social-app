@@ -1,7 +1,7 @@
 import React from 'react';
 import './SignUp.css';
 
-import {Title} from './Title.style';
+import {Input} from './Input.style';
 import useSignUpForm from "../hooks/useSignUpForm";
 import validate from '../helpers/signUpFormValidationRules';
 
@@ -23,19 +23,18 @@ const SignUp = () => {
     return(
         <div className="sign-up">
             <h1>Sign Up</h1>
-            <Title>Hello World!</Title>
             <form className="sign-up-form" onSubmit={handleSubmit} noValidate>
 
-                <input autoComplete="off" className="input" type="text" name="userName" placeholder="User Name" onChange={handleChange} value={values.userName || ''} required />
+                <Input autoComplete="off" className="input" type="text" name="userName" placeholder="User Name" onChange={handleChange} value={values.userName || ''} required />
                   {errors.userName && (<p className="error">{errors.userName}</p>)}               
 
-                <input autoComplete="off" className="input" type="email" name="email" placeholder="E-mail" onChange={handleChange} value={values.email || ''} required />
+                <Input autoComplete="off" className="input" type="email" name="email" placeholder="E-mail" onChange={handleChange} value={values.email || ''} required />
                   {errors.email && (<p className="error">{errors.email}</p>)}
 
-                <input autoComplete="off" className="input" type="text" name="password" placeholder="Password" onChange={handleChange} value={values.password || ''} required />
+                <Input autoComplete="off" className="input" type="text" name="password" placeholder="Password" onChange={handleChange} value={values.password || ''} required />
                   {errors.password && (<p className="error">{errors.password}</p>)}
 
-                <input autoComplete="off" className="input" type="text" name="confirmPassword" placeholder="Confirm password" onChange={handleChange} value={values.confirmPassword || ''} required />
+                <Input autoComplete="off" className="input" type="text" name="confirmPassword" placeholder="Confirm password" onChange={handleChange} value={values.confirmPassword || ''} required />
                   {errors.confirmPassword && (<p className="error">{errors.confirmPassword}</p>)}
                 
                 <button className="btn" type="submit">Sign Up</button>

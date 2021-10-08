@@ -1,0 +1,34 @@
+.log-in {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.log-in-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 700px;
+}
+
+.log-in-form p {
+    color: red;
+    font-size: 0.7em;
+    width: 30%;
+    text-align: left;
+    margin-left: 5px;
+    padding: 3px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.log-in-form .btn {
+    color: black;
+    font-weight: 700;
+    width: 41%;
+    margin-top: 15px;
+    border: 2px solid powderblue;
+    border-radius: 3px;
+    background-color: powderblue;
+    cursor: pointer;
+}

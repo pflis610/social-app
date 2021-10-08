@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -11,19 +11,21 @@ import Menu from './components/Menu';
 function App() {
 
 
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
   return (
   
     <Router>
       <div className="App">
 
         <header className="App-header">
-          <Menu />
+          <Menu user={user} setUser={setUser} />
         </header>
 
-        <body>
+        <div>
           <Switch>
             <Route path="/login">
-              <LogIn />
+              <LogIn user={user} setUser={setUser} />
             </Route>
             <Route path="/signup">
               <SignUp />
@@ -32,7 +34,7 @@ function App() {
               <Home />
             </Route>
           </Switch>
-        </body>
+        </div>
 
       </div>
     </Router>

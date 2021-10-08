@@ -5,13 +5,14 @@ import axios from 'axios';
 
 
 
-function Menu() {
+function Menu(props) {
 
     const logOut = (event) => {
         event.preventDefault()
 
         let user = JSON.parse(localStorage.getItem('user'))
-
+        console.log(user);
+        
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -26,7 +27,7 @@ function Menu() {
             .then((req) => {
         
                 localStorage.setItem('user', null)  
-        
+                props.setUser(null);
                 console.log(req.data);  
             }).catch((error) => {
                 console.error(error);
@@ -43,17 +44,17 @@ function Menu() {
                     <li>
                         <Link to="/">Home</Link>
                     </li>
-                    {localStorage.getItem('user') == ""  &&
+                    {!props.user  &&
                         <li>
                             <Link to="/login">Log In</Link>
                         </li>}
-                    {localStorage.getItem('user') != null  &&
+                    {props.user  &&
                         <li>
                             <Link to="/logout" onClick={logOut}>Log Out</Link>
                         </li>}
-                    <li>
+                    {!props.user  && <li>
                         <Link to="/signup">Sign Up</Link>
-                    </li>
+                    </li>}
                 </ul>
             </nav>
         </div>
