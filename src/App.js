@@ -10,8 +10,7 @@ import Menu from './components/Menu';
 
 function App() {
 
-
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
 
   return (
   
@@ -19,13 +18,13 @@ function App() {
       <div className="App">
 
         <header className="App-header">
-          <Menu user={user} setUser={setUser} />
+          <Menu setUser={setUser} user={user} />
         </header>
 
-        <div>
+        <main>
           <Switch>
             <Route path="/login">
-              <LogIn user={user} setUser={setUser} />
+              <LogIn setUser={setUser} user={user} />
             </Route>
             <Route path="/signup">
               <SignUp />
@@ -34,7 +33,7 @@ function App() {
               <Home />
             </Route>
           </Switch>
-        </div>
+        </main>
 
       </div>
     </Router>

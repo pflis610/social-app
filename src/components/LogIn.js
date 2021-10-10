@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import './LogIn.css';
+import {Input} from './Input.style';
+
 
 import {Redirect} from "react-router-dom";
-import { Input } from './Input.style';
 
 const LogIn = (props) => {
 
     const [values, setValues] = useState({});
-    const [errors, setErrors] = useState(false);
+    const [error, setError] = useState(false)
 
 
     const handleSubmit = (event) => {
@@ -33,17 +34,18 @@ const LogIn = (props) => {
             .then((req) => {
                 
                 if(req.data.error === false) {
-                    localStorage.setItem('user', JSON.stringify(req.data))
-                    props.setUser(req.data)
-                }    
-
-               
-                if(req.data.error !== false) {
-                    setErrors(true);
-                } else {
-                    setErrors(false);
+                    localStorage.setItem('user', JSON.stringify(req.data));
+                    props.setUser(req.data);
                 }
-
+                
+                console.log(req.data);
+             
+                if(req.data.error !== false) {
+                    setError(true);
+                } else {
+                    setError(false);
+                }
+               
             }).catch((error) => {
                 console.error(error);
             })
@@ -57,13 +59,14 @@ const LogIn = (props) => {
 
     return(
         <div className="log-in">
+
             {props.user && <Redirect to="/" />}
             <h1>Log In</h1>
             <form className="log-in-form" onSubmit={handleSubmit} noValidate>
                 <Input type="text" className="input" placeholder="User Name" name="username" value= {values.username} onChange= {handleChange} /> 
                 <Input type="text" className="input" placeholder="Password" name="password" value= {values.password} onChange= {handleChange} />
                 <button className="btn" type="submit">Log In</button>
-                {errors && <p className="error">Not valid password</p>} 
+                {error && <p className="error">Not valid password</p>} 
             </form>    
         </div>
     );

@@ -23,6 +23,7 @@ const SignUp = () => {
     return(
         <div className="sign-up">
             <h1>Sign Up</h1>
+            
             <form className="sign-up-form" onSubmit={handleSubmit} noValidate>
 
                 <Input autoComplete="off" className="input" type="text" name="userName" placeholder="User Name" onChange={handleChange} value={values.userName || ''} required />

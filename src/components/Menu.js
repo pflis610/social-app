@@ -11,8 +11,7 @@ function Menu(props) {
         event.preventDefault()
 
         let user = JSON.parse(localStorage.getItem('user'))
-        console.log(user);
-        
+
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -37,7 +36,7 @@ function Menu(props) {
 
 
     return(
-        <div>
+        <div className="top-container">
             <div className="logo">LOGO</div>
             <nav className="menu">
                 <ul>
@@ -52,7 +51,8 @@ function Menu(props) {
                         <li>
                             <Link to="/logout" onClick={logOut}>Log Out</Link>
                         </li>}
-                    {!props.user  && <li>
+                    {!props.user  &&
+                    <li>
                         <Link to="/signup">Sign Up</Link>
                     </li>}
                 </ul>
